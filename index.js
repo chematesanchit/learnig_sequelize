@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { DataTypes } = Sequelize;
+const { DataTypes, Op } = Sequelize;
 const sequelize = new Sequelize('sequelize', 'root', '1234', {
     dialect: 'mysql'
 });
@@ -153,18 +153,235 @@ User.sync({ alter: true }).then((data) => {
     // });
 
     //Validating Inserted Data made changes in line no 24 and 25
-    return User.create(
-        {
-            username: 'vishnupriya'
-        }
+
+
+
+    // Select Rows with FindAll()
+    //     return User.findAll();
+    // }).then((data) => {
+    //     data.forEach((element) => {
+    //         console.log(element.toJSON());
+
+    //     });
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+
+    //Selecting Columns with an Alias
+
+    //     return User.findAll({ attributes: [['username', 'mayName'], ['password', 'pwd']] });
+    // }).then((data) => {
+    //     data.forEach((element) => {
+    //         console.log(element.toJSON());
+
+    //     });
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+
+    //Aggregations with Sequelize.fn() 
+
+    //     return User.findAll({ attributes: [[sequelize.fn('SUM', sequelize.col('age')), 'howOld']] });
+    // }).then((data) => {
+    //     data.forEach((element) => {
+    //         console.log(element.toJSON());
+
+    //     });
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+    // Excluding Specific Columns with FindAll()
+
+    //     return User.findAll({ attributes: { exclude: ['password'] } });
+    // }).then((data) => {
+    //     data.forEach((element) => {
+    //         console.log(element.toJSON());
+
+    //     });
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+    // Selecting Rows with Where Filter
+
+    //     return User.findAll({ attribute: ['username'], where: { age: 19 } });
+    // }).then((data) => {
+    //     data.forEach((element) => {
+    //         console.log(element.toJSON());
+
+    //     });
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+    //Limiting Amount of Returned Rows
+
+
+    //     return User.findAll({ limit: 2 });
+    // }).then((data) => {
+    //     data.forEach((element) => {
+    //         console.log(element.toJSON());
+
+    //     });
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+    //Ordering Returned Rows
+
+    //return User.findAll({ order: [['age', 'DESC']] });
+    //return User.findAll({ order: [['age', 'ASC']] });
+    // }).then((data) => {
+    //     data.forEach((element) => {
+    //         console.log(element.toJSON());
+
+    //     });
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+    //Grouping and Ordering Returned Rows
+
+    //     return User.findAll({
+    //         attributes: [
+    //             'username',
+    //             [sequelize.fn('SUM', sequelize.col('age')), 'sum_age']
+    //         ],
+    //         group: ['username'] // Include all non-aggregated columns in the GROUP BY clause
+    //     });
+    // }).then((data) => {
+    //     data.forEach((element) => {
+    //         console.log(element.toJSON());
+
+    //     });
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+    // Selecting Rows with Operators
+
+
+    //     return User.findAll({
+    //         where: {
+    //             [Op.or]: { username: 'socer', age: 21 }
+    //         }
+
+    //     });
+    // }).then((data) => {
+    //     data.forEach((element) => {
+    //         console.log(element.toJSON());
+
+    //     });
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+    // Functions in Where Clause
+
+    //     return User.findAll({
+    //         where: {
+    //             [Op.and]: [
+    //                 sequelize.where(
+    //                     sequelize.fn('CHAR_LENGTH', sequelize.col('username')),
+    //                     '<=',
+    //                     6
+    //                 )
+    //             ]
+    //         }
+    //     });
+    // }).then((data) => {
+    //     data.forEach((element) => {
+    //         console.log(element.toJSON());
+
+    //     });
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+    // Updating Rows with Update()
+
+    //     return User.update({ username: 'satyajit' }, {
+    //         where: { age: 25 }
+    //     });
+    // }).then((data) => {
+
+    //     console.log(data);
+
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+    // Deleting Rows with Destroy()
+
+    //     return User.destroy({
+    //         where: { age: 25 }
+    //     });
+    // }).then((data) => {
+
+    //     console.log(data);
+
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+
+    // Deleting Every Row with Truncate
+
+    // return User.destroy({ truncate : true
+
+    // });
+    // }).then((data) => {
+
+    //     console.log(data);
+
+
+    // }).catch((err) => {
+    //     console.log(err)
+
+    // });
+
+
+
+    // Utility Methods
+
+    return User.max(
+        'age'
+
     );
 }).then((data) => {
-    data.forEach((element) => {
-        console.log(element.toJSON());
 
-    });
+    console.log(data);
+
 
 }).catch((err) => {
     console.log(err)
 
 });
+
